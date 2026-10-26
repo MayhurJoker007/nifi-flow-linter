@@ -1,0 +1,90 @@
+{
+  "flowContents": {
+    "identifier": "root-1",
+    "name": "Order sync",
+    "processors": [
+      {
+        "identifier": "p-list",
+        "name": "List order files",
+        "type": "org.apache.nifi.processors.standard.ListSFTP",
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "scheduledState": "ENABLED",
+        "autoTerminatedRelationships": [],
+        "properties": {
+          "Hostname": "sftp://files.distributor.example",
+          "Password": "Winter2026!",
+          "Remote Path": "#{orders.remote.path}"
+        }
+      },
+      {
+        "identifier": "p-convert",
+        "name": "ConvertRecord",
+        "type": "org.apache.nifi.processors.standard.ConvertRecord",
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "scheduledState": "ENABLED",
+        "autoTerminatedRelationships": ["failure"],
+        "properties": {}
+      },
+      {
+        "identifier": "p-post",
+        "name": "Send to ERP",
+        "type": "org.apache.nifi.processors.standard.InvokeHTTP",
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "scheduledState": "ENABLED",
+        "autoTerminatedRelationships": ["Original", "Response", "retry", "No Retry", "Failure"],
+        "properties": {
+          "HTTP URL": "https://erp.internal.example/api/orders",
+          "Authorization Token": "#{erp.token}",
+          "HTTP Method": "POST"
+        }
+      },
+      {
+        "identifier": "p-old",
+        "name": "Old transform",
+        "type": "org.apache.nifi.processors.standard.UpdateAttribute",
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "scheduledState": "DISABLED",
+        "autoTerminatedRelationships": ["success"],
+        "properties": {}
+      }
+    ],
+    "connections": [
+      {
+        "identifier": "c-1",
+        "name": "",
+        "source": {"id": "p-list", "type": "PROCESSOR", "groupId": "root-1"},
+        "destination": {"id": "p-convert", "type": "PROCESSOR", "groupId": "root-1"},
+        "selectedRelationships": ["success"],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB"
+      },
+      {
+        "identifier": "c-2",
+        "name": "",
+        "source": {"id": "p-convert", "type": "PROCESSOR", "groupId": "root-1"},
+        "destination": {"id": "p-post", "type": "PROCESSOR", "groupId": "root-1"},
+        "selectedRelationships": ["success"],
+        "backPressureObjectThreshold": 0,
+        "backPressureDataSizeThreshold": "0 B"
+      },
+      {
+        "identifier": "c-3",
+        "name": "",
+        "source": {"id": "p-post", "type": "PROCESSOR", "groupId": "root-1"},
+        "destination": {"id": "p-gone", "type": "PROCESSOR", "groupId": "root-1"},
+        "selectedRelationships": ["Response"],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB"
+      }
+    ],
+    "funnels": [],
+    "inputPorts": [],
+    "outputPorts": [],
+    "processGroups": []
+  },
+  "parameterContexts": {}
+}

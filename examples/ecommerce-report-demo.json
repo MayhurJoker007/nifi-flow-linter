@@ -1,0 +1,939 @@
+{
+  "flowContents": {
+    "identifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+    "instanceIdentifier": "e9a7fb74-01a0-1000-98ab-c9a6431af009",
+    "name": "E-commerce Report Demo",
+    "comments": "Generates dummy e-commerce data with Python, builds Excel + PDF reports and emails them.",
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [
+      {
+        "identifier": "e1657d62-a987-3955-8024-e7a3655259fe",
+        "instanceIdentifier": "e9a83bf2-01a0-1000-986b-754ad75a7158",
+        "name": "Email report",
+        "comments": "Enter your Gmail App Password in SMTP Password before starting.",
+        "position": {
+          "x": 400.0,
+          "y": 700.0
+        },
+        "type": "org.apache.nifi.processors.standard.PutEmail",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "CC": null,
+          "Reply-To": null,
+          "SMTP Socket Factory": "javax.net.ssl.SSLSocketFactory",
+          "BCC": null,
+          "Message": "${email.body}",
+          "Attach File": "true",
+          "Attributes to Send as Headers Regular Expression": null,
+          "SMTP Port": "587",
+          "SMTP Auth": "true",
+          "Input Character Set": "UTF-8",
+          "From": "reports@example.com",
+          "Include All Attributes In Message": "false",
+          "SMTP Hostname": "smtp.gmail.com",
+          "Authorization Mode": "password-based-authorization-mode",
+          "OAuth2 Access Token Provider": null,
+          "Subject": "${email.subject}",
+          "FlowFile Content as Message": "false",
+          "SMTP X-Mailer Header": "NiFi",
+          "SMTP START TLS": "true",
+          "Content Type": "text/plain",
+          "SMTP Username": "reports@example.com",
+          "To": "reports@example.com"
+        },
+        "propertyDescriptors": {
+          "CC": {
+            "name": "CC",
+            "displayName": "CC",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Reply-To": {
+            "name": "Reply-To",
+            "displayName": "Reply-To",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Socket Factory": {
+            "name": "SMTP Socket Factory",
+            "displayName": "SMTP Socket Factory",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "BCC": {
+            "name": "BCC",
+            "displayName": "BCC",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Message": {
+            "name": "Message",
+            "displayName": "Message",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attach File": {
+            "name": "Attach File",
+            "displayName": "Attach File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Attributes to Send as Headers Regular Expression": {
+            "name": "Attributes to Send as Headers Regular Expression",
+            "displayName": "Attributes to Send as Headers Regular Expression",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Port": {
+            "name": "SMTP Port",
+            "displayName": "SMTP Port",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Auth": {
+            "name": "SMTP Auth",
+            "displayName": "SMTP Auth",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Input Character Set": {
+            "name": "Input Character Set",
+            "displayName": "Input Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "From": {
+            "name": "From",
+            "displayName": "From",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Include All Attributes In Message": {
+            "name": "Include All Attributes In Message",
+            "displayName": "Include All Attributes In Message",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Hostname": {
+            "name": "SMTP Hostname",
+            "displayName": "SMTP Hostname",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Authorization Mode": {
+            "name": "Authorization Mode",
+            "displayName": "Authorization Mode",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "OAuth2 Access Token Provider": {
+            "name": "OAuth2 Access Token Provider",
+            "displayName": "OAuth2 Access Token Provider",
+            "identifiesControllerService": true,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Subject": {
+            "name": "Subject",
+            "displayName": "Subject",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "FlowFile Content as Message": {
+            "name": "FlowFile Content as Message",
+            "displayName": "FlowFile Content as Message",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP X-Mailer Header": {
+            "name": "SMTP X-Mailer Header",
+            "displayName": "SMTP X-Mailer Header",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP START TLS": {
+            "name": "SMTP START TLS",
+            "displayName": "SMTP START TLS",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Type": {
+            "name": "Content Type",
+            "displayName": "Content Type",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Username": {
+            "name": "SMTP Username",
+            "displayName": "SMTP Username",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "To": {
+            "name": "To",
+            "displayName": "To",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "SMTP Password": {
+            "name": "SMTP Password",
+            "displayName": "SMTP Password",
+            "identifiesControllerService": false,
+            "sensitive": true,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "success"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "eabb7c5f-28a0-3ae4-931d-3395e783ed58",
+        "instanceIdentifier": "e9a823c2-01a0-1000-b0ad-e3a1773be042",
+        "name": "Generate e-commerce data",
+        "comments": "Edit the script in VS Code: /opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+        "position": {
+          "x": 400.0,
+          "y": 220.0
+        },
+        "type": "ExecutePythonScript",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "python-extensions",
+          "version": "0.1.0"
+        },
+        "properties": {
+          "Script File": "/opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+          "Python Packages": "faker",
+          "Script Body": "# Example: uppercase the content and tag it\ncontent = content.upper()\nattributes['processed.by'] = 'ExecutePythonScript'\n",
+          "days": "30",
+          "orders": "250",
+          "customers": "60",
+          "Content Encoding": "utf-8"
+        },
+        "propertyDescriptors": {
+          "Script File": {
+            "name": "Script File",
+            "displayName": "Script File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Python Packages": {
+            "name": "Python Packages",
+            "displayName": "Python Packages",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Script Body": {
+            "name": "Script Body",
+            "displayName": "Script Body",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "days": {
+            "name": "days",
+            "displayName": "days",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "orders": {
+            "name": "orders",
+            "displayName": "orders",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "customers": {
+            "name": "customers",
+            "displayName": "customers",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": true
+          },
+          "Content Encoding": {
+            "name": "Content Encoding",
+            "displayName": "Content Encoding",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "original"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "e209aeaf-5f50-3d1c-95f0-07c87131440d",
+        "instanceIdentifier": "e9a81bb3-01a0-1000-2a54-ad636c9d3b1b",
+        "name": "Trigger report",
+        "comments": "Right-click > Run Once to create a report now, or Start to send one every day.",
+        "position": {
+          "x": 400.0,
+          "y": 0.0
+        },
+        "type": "org.apache.nifi.processors.standard.GenerateFlowFile",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "nifi-standard-nar",
+          "version": "2.12.0"
+        },
+        "properties": {
+          "File Size": "0B",
+          "Batch Size": "1",
+          "Unique FlowFiles": "false",
+          "Mime Type": null,
+          "Custom Text": null,
+          "Character Set": "UTF-8",
+          "Data Format": "Text"
+        },
+        "propertyDescriptors": {
+          "File Size": {
+            "name": "File Size",
+            "displayName": "File Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Batch Size": {
+            "name": "Batch Size",
+            "displayName": "Batch Size",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Unique FlowFiles": {
+            "name": "Unique FlowFiles",
+            "displayName": "Unique FlowFiles",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Mime Type": {
+            "name": "Mime Type",
+            "displayName": "Mime Type",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Custom Text": {
+            "name": "Custom Text",
+            "displayName": "Custom Text",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Character Set": {
+            "name": "Character Set",
+            "displayName": "Character Set",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Data Format": {
+            "name": "Data Format",
+            "displayName": "Data Format",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "1 day",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 0,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "ae067d0f-2775-388e-9df6-c86e13122bdd",
+        "instanceIdentifier": "e9a833dc-01a0-1000-214c-66f381fb03b2",
+        "name": "Build PDF report",
+        "comments": "",
+        "position": {
+          "x": 700.0,
+          "y": 460.0
+        },
+        "type": "ExecutePythonScript",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "python-extensions",
+          "version": "0.1.0"
+        },
+        "properties": {
+          "Script File": "/opt/nifi/scripts/ecommerce/build_pdf_report.py",
+          "Python Packages": "fpdf2",
+          "Script Body": "# Example: uppercase the content and tag it\ncontent = content.upper()\nattributes['processed.by'] = 'ExecutePythonScript'\n",
+          "Content Encoding": "utf-8"
+        },
+        "propertyDescriptors": {
+          "Script File": {
+            "name": "Script File",
+            "displayName": "Script File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Python Packages": {
+            "name": "Python Packages",
+            "displayName": "Python Packages",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Script Body": {
+            "name": "Script Body",
+            "displayName": "Script Body",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Encoding": {
+            "name": "Content Encoding",
+            "displayName": "Content Encoding",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "original"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "d77ad7f4-a815-3122-a349-7829552d3ea6",
+        "instanceIdentifier": "e9a82bc7-01a0-1000-f19f-be3a1b240e81",
+        "name": "Build Excel report",
+        "comments": "",
+        "position": {
+          "x": 100.0,
+          "y": 460.0
+        },
+        "type": "ExecutePythonScript",
+        "bundle": {
+          "group": "org.apache.nifi",
+          "artifact": "python-extensions",
+          "version": "0.1.0"
+        },
+        "properties": {
+          "Script File": "/opt/nifi/scripts/ecommerce/build_excel_report.py",
+          "Python Packages": "openpyxl",
+          "Script Body": "# Example: uppercase the content and tag it\ncontent = content.upper()\nattributes['processed.by'] = 'ExecutePythonScript'\n",
+          "Content Encoding": "utf-8"
+        },
+        "propertyDescriptors": {
+          "Script File": {
+            "name": "Script File",
+            "displayName": "Script File",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Python Packages": {
+            "name": "Python Packages",
+            "displayName": "Python Packages",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Script Body": {
+            "name": "Script Body",
+            "displayName": "Script Body",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          },
+          "Content Encoding": {
+            "name": "Content Encoding",
+            "displayName": "Content Encoding",
+            "identifiesControllerService": false,
+            "sensitive": false,
+            "dynamic": false
+          }
+        },
+        "style": {},
+        "schedulingPeriod": "0 sec",
+        "schedulingStrategy": "TIMER_DRIVEN",
+        "executionNode": "ALL",
+        "penaltyDuration": "30 sec",
+        "yieldDuration": "1 sec",
+        "bulletinLevel": "WARN",
+        "runDurationMillis": 25,
+        "concurrentlySchedulableTaskCount": 1,
+        "autoTerminatedRelationships": [
+          "original"
+        ],
+        "scheduledState": "ENABLED",
+        "retryCount": 10,
+        "retriedRelationships": [],
+        "backoffMechanism": "PENALIZE_FLOWFILE",
+        "maxBackoffPeriod": "10 mins",
+        "componentType": "PROCESSOR",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      }
+    ],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [
+      {
+        "identifier": "61acd1df-f49d-3158-bebd-2172af063de8",
+        "instanceIdentifier": "e9a85442-01a0-1000-9a1d-a8e74cfba586",
+        "name": "e-commerce JSON",
+        "source": {
+          "id": "eabb7c5f-28a0-3ae4-931d-3395e783ed58",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Generate e-commerce data",
+          "comments": "Edit the script in VS Code: /opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+          "instanceIdentifier": "e9a823c2-01a0-1000-b0ad-e3a1773be042"
+        },
+        "destination": {
+          "id": "d77ad7f4-a815-3122-a349-7829552d3ea6",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build Excel report",
+          "comments": "",
+          "instanceIdentifier": "e9a82bc7-01a0-1000-f19f-be3a1b240e81"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "3e2d6c39-90cc-371c-9912-445dd7152548",
+        "instanceIdentifier": "e9a84c29-01a0-1000-d14e-77ad32b1c148",
+        "name": "",
+        "source": {
+          "id": "e209aeaf-5f50-3d1c-95f0-07c87131440d",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Trigger report",
+          "comments": "Right-click > Run Once to create a report now, or Start to send one every day.",
+          "instanceIdentifier": "e9a81bb3-01a0-1000-2a54-ad636c9d3b1b"
+        },
+        "destination": {
+          "id": "eabb7c5f-28a0-3ae4-931d-3395e783ed58",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Generate e-commerce data",
+          "comments": "Edit the script in VS Code: /opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+          "instanceIdentifier": "e9a823c2-01a0-1000-b0ad-e3a1773be042"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "5a6327fc-a0ed-3a6b-8493-56808d587308",
+        "instanceIdentifier": "e9a8645d-01a0-1000-3242-416ff2870b46",
+        "name": "Excel file",
+        "source": {
+          "id": "d77ad7f4-a815-3122-a349-7829552d3ea6",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build Excel report",
+          "comments": "",
+          "instanceIdentifier": "e9a82bc7-01a0-1000-f19f-be3a1b240e81"
+        },
+        "destination": {
+          "id": "e1657d62-a987-3955-8024-e7a3655259fe",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Email report",
+          "comments": "Enter your Gmail App Password in SMTP Password before starting.",
+          "instanceIdentifier": "e9a83bf2-01a0-1000-986b-754ad75a7158"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "ffeba2bc-6ec4-3966-96ba-102384000ee7",
+        "instanceIdentifier": "e9a88c9e-01a0-1000-5792-432aa27a3654",
+        "name": "errors",
+        "source": {
+          "id": "e1657d62-a987-3955-8024-e7a3655259fe",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Email report",
+          "comments": "Enter your Gmail App Password in SMTP Password before starting.",
+          "instanceIdentifier": "e9a83bf2-01a0-1000-986b-754ad75a7158"
+        },
+        "destination": {
+          "id": "d67456f4-4bc8-329a-aa24-8bf352b46a81",
+          "type": "FUNNEL",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Funnel",
+          "comments": "",
+          "instanceIdentifier": "e9a84412-01a0-1000-6628-2af304034908"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "cda9e522-5413-3127-93f0-6b769c2d5975",
+        "instanceIdentifier": "e9a88487-01a0-1000-b14c-73e1489aeb9b",
+        "name": "errors",
+        "source": {
+          "id": "ae067d0f-2775-388e-9df6-c86e13122bdd",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build PDF report",
+          "comments": "",
+          "instanceIdentifier": "e9a833dc-01a0-1000-214c-66f381fb03b2"
+        },
+        "destination": {
+          "id": "d67456f4-4bc8-329a-aa24-8bf352b46a81",
+          "type": "FUNNEL",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Funnel",
+          "comments": "",
+          "instanceIdentifier": "e9a84412-01a0-1000-6628-2af304034908"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "f8d11124-1e16-390f-bf05-13edeabd7616",
+        "instanceIdentifier": "e9a87c74-01a0-1000-def7-30d5b6accad4",
+        "name": "errors",
+        "source": {
+          "id": "d77ad7f4-a815-3122-a349-7829552d3ea6",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build Excel report",
+          "comments": "",
+          "instanceIdentifier": "e9a82bc7-01a0-1000-f19f-be3a1b240e81"
+        },
+        "destination": {
+          "id": "d67456f4-4bc8-329a-aa24-8bf352b46a81",
+          "type": "FUNNEL",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Funnel",
+          "comments": "",
+          "instanceIdentifier": "e9a84412-01a0-1000-6628-2af304034908"
+        },
+        "labelIndex": 0,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [
+          {
+            "x": 560.0,
+            "y": 992.0
+          }
+        ],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "5f835284-bd2b-3e14-a986-7344e44719eb",
+        "instanceIdentifier": "e9a85c52-01a0-1000-0900-02f007a7cae6",
+        "name": "e-commerce JSON",
+        "source": {
+          "id": "eabb7c5f-28a0-3ae4-931d-3395e783ed58",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Generate e-commerce data",
+          "comments": "Edit the script in VS Code: /opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+          "instanceIdentifier": "e9a823c2-01a0-1000-b0ad-e3a1773be042"
+        },
+        "destination": {
+          "id": "ae067d0f-2775-388e-9df6-c86e13122bdd",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build PDF report",
+          "comments": "",
+          "instanceIdentifier": "e9a833dc-01a0-1000-214c-66f381fb03b2"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "d0d4a101-2e4f-33d2-ba0b-9b93d0226dbd",
+        "instanceIdentifier": "e9a8746d-01a0-1000-7adf-f7c6dc7de2e4",
+        "name": "errors",
+        "source": {
+          "id": "eabb7c5f-28a0-3ae4-931d-3395e783ed58",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Generate e-commerce data",
+          "comments": "Edit the script in VS Code: /opt/nifi/scripts/ecommerce/generate_ecommerce_data.py",
+          "instanceIdentifier": "e9a823c2-01a0-1000-b0ad-e3a1773be042"
+        },
+        "destination": {
+          "id": "d67456f4-4bc8-329a-aa24-8bf352b46a81",
+          "type": "FUNNEL",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Funnel",
+          "comments": "",
+          "instanceIdentifier": "e9a84412-01a0-1000-6628-2af304034908"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "failure"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      },
+      {
+        "identifier": "1102f275-bbad-394a-92c1-5854050444d4",
+        "instanceIdentifier": "e9a86c66-01a0-1000-d221-5b3bdbd1e8e7",
+        "name": "PDF file",
+        "source": {
+          "id": "ae067d0f-2775-388e-9df6-c86e13122bdd",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Build PDF report",
+          "comments": "",
+          "instanceIdentifier": "e9a833dc-01a0-1000-214c-66f381fb03b2"
+        },
+        "destination": {
+          "id": "e1657d62-a987-3955-8024-e7a3655259fe",
+          "type": "PROCESSOR",
+          "groupId": "8f1f3c11-a3f5-398b-8d97-05947f459db2",
+          "name": "Email report",
+          "comments": "Enter your Gmail App Password in SMTP Password before starting.",
+          "instanceIdentifier": "e9a83bf2-01a0-1000-986b-754ad75a7158"
+        },
+        "labelIndex": 1,
+        "zIndex": 0,
+        "selectedRelationships": [
+          "success"
+        ],
+        "backPressureObjectThreshold": 10000,
+        "backPressureDataSizeThreshold": "1 GB",
+        "flowFileExpiration": "0 sec",
+        "prioritizers": [],
+        "bends": [],
+        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+        "loadBalanceCompression": "DO_NOT_COMPRESS",
+        "componentType": "CONNECTION",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "992d383c-b8f1-3a34-8972-f551caf25b1f",
+        "instanceIdentifier": "e9a894b3-01a0-1000-5d90-55edbdb7eb42",
+        "position": {
+          "x": 1000.0,
+          "y": -40.0
+        },
+        "label": "HOW TO USE\n1. Email report > Configure > SMTP Password: paste a Gmail App Password\n   (myaccount.google.com/apppasswords), then Start it.\n2. Right-click Trigger report > Run Once.\n3. You get two emails: one with the Excel file, one with the PDF.\nScripts: C:/Users/mayhu/nifi/scripts/ecommerce (edit in VS Code).\nFailures collect in the funnel on the right.",
+        "zIndex": 0,
+        "width": 420.0,
+        "height": 170.0,
+        "style": {
+          "font-size": "13px"
+        },
+        "componentType": "LABEL",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      }
+    ],
+    "funnels": [
+      {
+        "identifier": "d67456f4-4bc8-329a-aa24-8bf352b46a81",
+        "instanceIdentifier": "e9a84412-01a0-1000-6628-2af304034908",
+        "position": {
+          "x": 1150.0,
+          "y": 480.0
+        },
+        "componentType": "FUNNEL",
+        "groupIdentifier": "8f1f3c11-a3f5-398b-8d97-05947f459db2"
+      }
+    ],
+    "controllerServices": [],
+    "defaultFlowFileExpiration": "0 sec",
+    "defaultBackPressureObjectThreshold": 10000,
+    "defaultBackPressureDataSizeThreshold": "1 GB",
+    "scheduledState": "ENABLED",
+    "executionEngine": "INHERITED",
+    "maxConcurrentTasks": 1,
+    "statelessFlowTimeout": "1 min",
+    "flowFileConcurrency": "UNBOUNDED",
+    "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+    "componentType": "PROCESS_GROUP"
+  },
+  "externalControllerServices": {},
+  "parameterContexts": {},
+  "flowEncodingVersion": "1.0",
+  "parameterProviders": {},
+  "latest": false
+}
